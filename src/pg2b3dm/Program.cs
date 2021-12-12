@@ -29,8 +29,13 @@ namespace pg2b3dm
 
                 if (!istrusted) {
                     Console.Write($"password for user {o.User}: ");
-                    password = PasswordAsker.GetPassword();
-                    connectionString += $";password={password}";
+                    if (string.IsNullOrEmpty(o.Password)) {
+                        password = PasswordAsker.GetPassword();
+                        connectionString += $";password={password}";
+                    }
+                    else {
+                        connectionString += $";password={o.Password}";
+                    }
                     Console.WriteLine();
                 }
 
