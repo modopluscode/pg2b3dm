@@ -107,7 +107,7 @@ namespace pg2b3dm
                 var json = TreeSerializer.ToJson(tiles.tiles, translation, box, geometricErrors[0], o.Refinement);
                 File.WriteAllText($"{o.Output}/tileset.json", json);
                 WriteTiles(conn, geometryTable, geometryColumn, idcolumn, translation, tiles.tiles, sr, o.Output, 0, nrOfTiles,
-         o.ShadersColumn, o.AttributeColumns, o.LodColumn);
+         o.ShadersColumn, o.AttributeColumns, o.LodColumn, query);
 
                 stopWatch.Stop();
                 Console.WriteLine();
@@ -138,7 +138,7 @@ namespace pg2b3dm
             }
         }
 
-        private static int WriteTiles(NpgsqlConnection conn, string geometryTable, string geometryColumn, string idcolumn, double[] translation, List<Tile> tiles, int epsg, string outputPath, int counter, int maxcount, string colorColumn = "", string attributesColumns = "", string lodColumn="")
+        private static int WriteTiles(NpgsqlConnection conn, string geometryTable, string geometryColumn, string idcolumn, double[] translation, List<Tile> tiles, int epsg, string outputPath, int counter, int maxcount, string colorColumn = "", string attributesColumns = "", string lodColumn="", string query="")
         {
             foreach (var t in tiles) {
                 counter++;
