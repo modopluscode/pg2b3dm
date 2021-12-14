@@ -145,7 +145,7 @@ namespace pg2b3dm
                 var perc = Math.Round(((double)counter / maxcount) * 100, 2);
                 Console.Write($"\rcreating tiles: {counter}/{maxcount} - {perc:F}%");
 
-                var geometries = BoundingBoxRepository.GetGeometrySubset(conn, geometryTable, geometryColumn, idcolumn, translation, t, epsg, colorColumn, attributesColumns, lodColumn);
+                var geometries = BoundingBoxRepository.GetGeometrySubset(conn, geometryTable, geometryColumn, idcolumn, translation, t, epsg, colorColumn, attributesColumns, lodColumn, query);
 
                 var triangleCollection = GetTriangles(geometries);
 
